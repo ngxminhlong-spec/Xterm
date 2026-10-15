@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Portico-unsigned-ipa
-          path: build/Portico-unsigned-ipa
+          path: build/Portico-unsigned.ipa
           if-no-files-found: error
 
       - name: Upload build log on failure
@@ -77,3 +77,4 @@ jobs:
           name: build-log
           path: build/xcodebuild.log
           if-no-files-found: ignore
+
