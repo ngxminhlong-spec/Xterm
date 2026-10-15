@@ -27,12 +27,14 @@ jobs:
         run: brew install xcodegen xcbeautify
 
       - name: Generate Xcode project
-        run: xcodegen generate
+        run: |
+          cd Portico
+          xcodegen generate
 
       - name: Resolve packages
         run: |
           xcodebuild -resolvePackageDependencies \
-            -project Portico.xcodeproj -scheme Portico \
+            -project Portico/Portico.xcodeproj -scheme Portico \
             -skipPackagePluginValidation -skipMacroValidation
 
       - name: Archive (no code signing)
@@ -40,7 +42,7 @@ jobs:
           set -o pipefail
           mkdir -p build
           xcodebuild archive \
-            -project Portico.xcodeproj \
+            -project Portico/Portico.xcodeproj \
             -scheme Portico \
             -configuration Release \
             -destination 'generic/platform=iOS' \
